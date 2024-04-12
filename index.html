@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="shortcut icon" href="img/6195699.png" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generador de Contraseña</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="gradient.css">
+</head>
+
+<body class="flex md:h-[100vh] items-center justify-center">
+
+  <div class="gradient"></div>
+
+  <main class="p-2 space-y-2 ">
+    <div class="max-w-md mx-auto bg-[#272727] p-6 rounded-xl shadow-md space-y-2">
+      <h2 class="text-xl font-semibold mb-4 text-center text-white">Generador de Contraseñas</h2>
+
+      <div class="mt-2 w-full inline-flex gap-x-2">
+        <input type="text" id="result"
+          class="w-full rounded-md outline-none border bg-gray-900 border-gray-700 text-gray-400 p-2" readonly>
+
+        <button type="button"
+          class="js-clipboard p-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border shadow-sm disabled:opacity-50 disabled:pointer-events-none bg-gray-900 border-gray-700 text-gray-400"
+          data-clipboard-target="#result" data-clipboard-action="copy" data-clipboard-success-text="Copied">
+          <svg class="js-clipboard-default w-4 h-4 group-hover:rotate-6 transition" xmlns="http://www.w3.org/2000/svg"
+            width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+          </svg>
+
+          <svg class="js-clipboard-success hidden w-4 h-4 text-blue-600" xmlns="http://www.w3.org/2000/svg" width="24"
+            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="mb-2">
+        <label for="length" class="text-white">Longitud de la contraseña: <span id="lengthValue">16</span></label>
+        <input type="range" id="length" min="6" max="30" value="16" class="w-full bg-transparent cursor-pointer appearance-none disabled:opacity-50 disabled:pointer-events-none focus:outline-none
+              [&::-webkit-slider-thumb]:w-2.5
+              [&::-webkit-slider-thumb]:h-2.5
+              [&::-webkit-slider-thumb]:-mt-0.5
+              [&::-webkit-slider-thumb]:appearance-none
+              [&::-webkit-slider-thumb]:shadow-[0_0_0_4px_rgba(37,99,235,1)]
+              [&::-webkit-slider-thumb]:rounded-full
+              [&::-webkit-slider-thumb]:transition-all
+              [&::-webkit-slider-thumb]:duration-150
+              [&::-webkit-slider-thumb]:ease-in-out
+              [&::-webkit-slider-thumb]:bg-slate-700
+              
+              [&::-moz-range-thumb]:w-2.5
+              [&::-moz-range-thumb]:h-2.5
+              [&::-moz-range-thumb]:appearance-none
+              [&::-moz-range-thumb]:bg-white
+              [&::-moz-range-thumb]:border-4
+              [&::-moz-range-thumb]:border-blue-600
+              [&::-moz-range-thumb]:rounded-full
+              [&::-moz-range-thumb]:transition-all
+              [&::-moz-range-thumb]:duration-150
+              [&::-moz-range-thumb]:ease-in-out
+              
+              [&::-webkit-slider-runnable-track]:w-full
+              [&::-webkit-slider-runnable-track]:h-2
+              [&::-webkit-slider-runnable-track]:rounded-full
+              [&::-webkit-slider-runnable-track]:bg-gray-700
+              
+              [&::-moz-range-track]:w-full
+              [&::-moz-range-track]:h-2
+              [&::-moz-range-track]:bg-gray-100
+              [&::-moz-range-track]:rounded-full" id="basic-range-slider-usage">
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-2">
+        <label for="uppercase"
+          class="flex p-3 block w-full rounded-lg text-sm bg-gray-900 border-gray-700 text-gray-400">
+          <span class="text-sm text-gray-500 dark:text-gray-400">Letras Mayúsculas</span>
+          <input type="checkbox"
+            class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+            id="uppercase" checked>
+        </label>
+
+        <label for="lowercase"
+          class="flex p-3 block w-full rounded-lg text-sm bg-gray-900 border-gray-700 text-gray-400">
+          <span class="text-sm text-gray-500 dark:text-gray-400">Letras Minúsculas</span>
+          <input type="checkbox"
+            class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+            id="lowercase" checked>
+        </label>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-2 mt-2">
+        <label for="numbers" class="flex p-3 block w-full rounded-lg text-sm bg-gray-900 border-gray-700 text-gray-400">
+          <span class="text-sm text-gray-500 dark:text-gray-400">Números</span>
+          <input type="checkbox"
+            class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+            id="numbers" checked>
+        </label>
+
+        <label for="symbols" class="flex p-3 block w-full rounded-lg text-sm bg-gray-900 border-gray-700 text-gray-400">
+          <span class="text-sm text-gray-500 dark:text-gray-400">Símbolos</span>
+          <input type="checkbox"
+            class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+            id="symbols" checked>
+        </label>
+      </div>
+      <button id="generate" class="w-full bg-indigo-600 text-white px-4 py-2 rounded-xl transition-colors">Generar
+        Contraseña</button>
+    </div>
+    <div class="max-w-md mx-auto bg-[#272727] p-6 rounded-xl shadow-md space-y-2">
+      <h2 class="text-xl font-semibold mb-4 text-center text-white">Comprobador de Contraseñas</h2>
+      <div class="flex mb-2">
+        <div class="flex-1">
+          <input type="password" id="hs-strong-password-with-indicator-and-hint"
+            class="py-3 px-4 block w-full border outline-none bg-gray-900 border-gray-700 text-gray-400 rounded-md text-sm disabled:opacity-50 disabled:pointer-events-none"
+            placeholder="Ingresa Contraseña">
+          <div id="hs-strong-password" data-hs-strong-password='{
+                    "target": "#hs-strong-password-with-indicator-and-hint",
+                    "hints": "#hs-strong-password-hints",
+                    "stripClasses": "hs-strong-password:opacity-100 hs-strong-password-accepted:bg-teal-500 h-2 flex-auto rounded-full bg-blue-500 opacity-50 mx-1"
+                  }' class="flex mt-2 -mx-1"></div>
+        </div>
+      </div>
+
+      <div id="hs-strong-password-hints" class="mb-3">
+        <div>
+          <span class="text-sm text-blue-600">Level:</span>
+          <span
+            data-hs-strong-password-hints-weakness-text='["Vacio", "Debil", "Medio", "Fuerte", "Muy Fuerte", "Super Fuerte"]'
+            class="text-sm font-semibold text-blue-600"></span>
+        </div>
+
+        <h4 class="my-2 text-sm font-semibold text-blue-600">
+          Su contraseña debe contener:
+        </h4>
+
+        <ul class="space-y-1 text-sm text-gray-500">
+          <li data-hs-strong-password-hints-rule-text="min-length"
+            class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2">
+            <span class="hidden" data-check>
+              <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </span>
+            <span data-uncheck>
+              <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </span>
+            Mínimo 6 de caracteres.
+          </li>
+          <li data-hs-strong-password-hints-rule-text="lowercase"
+            class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2">
+            <span class="hidden" data-check>
+              <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </span>
+            <span data-uncheck>
+              <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </span>
+            Debe contener minúsculas.
+          </li>
+          <li data-hs-strong-password-hints-rule-text="uppercase"
+            class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2">
+            <span class="hidden" data-check>
+              <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </span>
+            <span data-uncheck>
+              <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </span>
+            Debe contener mayúsculas.
+          </li>
+          <li data-hs-strong-password-hints-rule-text="numbers"
+            class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2">
+            <span class="hidden" data-check>
+              <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </span>
+            <span data-uncheck>
+              <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </span>
+            Debe contener números.
+          </li>
+          <li data-hs-strong-password-hints-rule-text="special-characters"
+            class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2">
+            <span class="hidden" data-check>
+              <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </span>
+            <span data-uncheck>
+              <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </span>
+            Debe contener caracteres especiales.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <script src="/node_modules/preline/dist/preline.js"></script>
+  <script src="js/web.js"></script>
+  <script src="/node_modules/clipboard/dist/clipboard.min.js"></script>
+
+</body>
+
+</html>
